@@ -1,6 +1,7 @@
 const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
+const factory = require('./handlerFactory');
 
 const filterObj = (obj, ...allowedFields) =>
   allowedFields.reduce((r, field) => {
@@ -36,12 +37,7 @@ exports.updateUser = (req, res) => {
     message: 'This route is not yet defined',
   });
 };
-exports.deleteUser = (req, res) => {
-  res.status(500).send({
-    status: 'error',
-    message: 'This route is not yet defined',
-  });
-};
+exports.deleteUser = factory.deleteOne(User);
 
 exports.updateMe = catchAsync(async (req, res, next) => {
   // 1. Create error if user tries to update password
