@@ -9,23 +9,8 @@ const filterObj = (obj, ...allowedFields) =>
     return r;
   }, {});
 
-exports.getAllUsers = catchAsync(async (req, res) => {
-  const users = await User.find({});
-
-  res.status(500).send({
-    status: 'error',
-    data: {
-      users,
-    },
-  });
-});
-exports.getUser = (req, res) => {
-  res.status(500).send({
-    status: 'error',
-    message: 'This route is not yet defined',
-  });
-};
-
+exports.getAllUsers = factory.getAll(User);
+exports.getUser = factory.getOne(User);
 exports.createUser = factory.createOne(User);
 exports.updateUser = factory.updateOne(User);
 exports.deleteUser = factory.deleteOne(User);
